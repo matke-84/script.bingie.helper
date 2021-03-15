@@ -36,7 +36,7 @@ def log(txt,loglevel=NOTICE,force=False):
         message = u'[ %s ] %s' % (ADDON_ID,txt)
 
         try:
-            xbmc.log(msg=message.encode('utf-8'), level=loglevel) # Python 2
+            xbmc.log(msg=message.encode('utf-8'), level=loglevel) # Python 3
         except TypeError:
             xbmc.log(msg=message, level=loglevel)
 
