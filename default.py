@@ -24,9 +24,9 @@ class Main:
             else:
                 try:
                     self.params[arg.split("=")[0].lower()] = "=".join(arg.split("=")[1:]).strip()
-                except Exception:
+                except:
                     self.params = {}
-                    log('Invalid parameter: %s' % arg)
+                    pass
 
     def getactions(self):
         action_inventory = {'ismylist': ismylist,
