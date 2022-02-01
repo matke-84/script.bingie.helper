@@ -3,6 +3,7 @@
 
 import xbmc
 import xbmcaddon
+import xbmcgui              
 import simplejson
 
 ADDON = xbmcaddon.Addon()
@@ -38,23 +39,6 @@ def log(txt,loglevel=INFO,force=False):
 
 def visible(condition):
     return xbmc.getCondVisibility(condition)
-
-def get_idandtype():
-    # gets item DBID and DBType (str)
-    item_id = xbmc.getInfoLabel('ListItem.DBID')
-    item_type = xbmc.getInfoLabel('ListItem.DBType')
-    return item_id, item_type
-
-def get_tags(item_id, item_type):
-    if item_id and item_type:
-        item_tags = json_call('VideoLibrary.Get' + item_type + 'Details',
-                              properties=['tag'],
-                              params={item_type + 'id': int(item_id)})
-        if 'result' in item_tags:
-            # extract tags to list
-            item_tags = item_tags['result'][item_type + 'details']['tag']
-            return item_tags
-    return None
 
 def get_first_youtube_video(query):
     for media in get_youtube_listing('%s' % query, limit=5):
